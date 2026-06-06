@@ -1,0 +1,588 @@
+{
+  "a17503c0-9c88-4ec0-9b11-7d02ac4e4713": {
+    "thread_id": "a17503c0-9c88-4ec0-9b11-7d02ac4e4713",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:41:26",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "8335acb4-bfff-46f0-b246-5b64c020cd11": {
+    "thread_id": "8335acb4-bfff-46f0-b246-5b64c020cd11",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:41:52",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "da196bdc-bafb-4e22-888b-419db1b95955": {
+    "thread_id": "da196bdc-bafb-4e22-888b-419db1b95955",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:43:32",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "4211c48b-e64f-459f-b08a-9c2813e20151": {
+    "thread_id": "4211c48b-e64f-459f-b08a-9c2813e20151",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:43:37",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "df442aa6-2820-45fb-aa40-9f88218aaa19": {
+    "thread_id": "df442aa6-2820-45fb-aa40-9f88218aaa19",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:43:40",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "6871cd01-5447-4b74-b7e6-23717037a256": {
+    "thread_id": "6871cd01-5447-4b74-b7e6-23717037a256",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:44:53",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "55b6a3c4-7b2a-4411-ad84-f9b30adfb06c": {
+    "thread_id": "55b6a3c4-7b2a-4411-ad84-f9b30adfb06c",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:46:41",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "a3610bc9-9be7-4fca-b58a-010da847cd4c": {
+    "thread_id": "a3610bc9-9be7-4fca-b58a-010da847cd4c",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:47:51",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "b5e874a3-62a1-467b-ac04-6b93df237655": {
+    "thread_id": "b5e874a3-62a1-467b-ac04-6b93df237655",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:48:52",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "ffb04fb7-128c-4148-8910-e496a1884a52": {
+    "thread_id": "ffb04fb7-128c-4148-8910-e496a1884a52",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T17:59:17",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "1a35582d-16ce-4ac5-8a0f-af984a85c36f": {
+    "thread_id": "1a35582d-16ce-4ac5-8a0f-af984a85c36f",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T18:00:25",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "aa07486a-2a8f-44c0-a569-b00b52cf84a0": {
+    "thread_id": "aa07486a-2a8f-44c0-a569-b00b52cf84a0",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T18:01:37",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "741e08b8-3cc5-4937-8172-0d3449aac519": {
+    "thread_id": "741e08b8-3cc5-4937-8172-0d3449aac519",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-24T18:05:47",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "What is the difference between a list and a tuple in Python?",
+        "answer": "(intro music) On the taboo list breaking the blood.",
+        "feedback": "I think there's been a slight misstep here. It seems like the candidate got a bit off track.\n\nWhat was good: I appreciate the enthusiasm, but perhaps this wasn't the best time for a music reference.\n\nWhat could be improved: A clear and concise explanation of the difference between lists and tuples would be more suitable for this question. Tuples are immutable, whereas lists are mutable. This distinction is crucial in Python development.\n\nA quick tip for next time: Take a deep breath, focus on the question, and provide a straightforward answer. Remember, it's okay to pause and collect your thoughts before speaking."
+      },
+      {
+        "question": "What is the difference between 'len()' and 'type()' functions in Python, and give an example of when you would use each?",
+        "answer": "len() used for count the number of charcter whereas type() used to find the data type of the variable",
+        "feedback": "Good effort on explaining the basic concepts of len() and type() functions. You've correctly identified their primary uses, but a more comprehensive explanation would be beneficial.\n\nImprovement suggestion: Next time, provide a concrete example to illustrate the difference between len() and type() functions. For instance, you could explain how len() would return the number of characters in a string, while type() would return the string data type itself.\n\nTip: When answering questions like this, try to provide a specific example that shows the application of the concept. This will help demonstrate your understanding and make your answer more memorable."
+      },
+      {
+        "question": "Write a Python function to convert a string of numbers separated by commas into a list of integers.",
+        "answer": "string=list",
+        "feedback": "Here's my feedback:\n\nWhat was good about the answer: You were quick to understand the problem and attempted to provide a solution. \nWhat could be improved: The answer is incomplete and doesn't actually solve the problem. The string and list functions are built-in in Python, but you need to use them correctly to achieve the desired result.\nA quick tip for next time: Instead of just listing the functions, try to think about how you can use them to solve the problem. For example, you could use the map function to convert each string in the input to an integer, or the split function to split the string into a list of substrings and then convert each substring to an integer. \n\nExample of a correct solution:\n```python\ndef convert_to_ints(s):\n    return list(map(int, s.split(',')))\n```"
+      },
+      {
+        "question": "You are given a list of numbers and you need to write a Python function that returns the sum of all the even numbers in the list. The function should not include any numbers that are greater than 10.",
+        "answer": "(whooshing sound) (wind blowing) (horse trotting)",
+        "feedback": "It seems like the candidate had a bit of an unorthodox response. While I appreciate the creativity, let's try to break down the problem in a more traditional way.\n\nWhat was good about the answer: I appreciate the enthusiasm and energy in the response.\n\nWhat could be improved: Typically, we'd expect a clear and concise code solution to this problem. Perhaps the candidate could have written a simple Python function that uses a list comprehension or a for loop to filter the even numbers and sum them up, while also including a condition to exclude numbers greater than 10.\n\nQuick tip for next time: When answering coding questions, try to focus on the problem and break it down into smaller, manageable parts. Don't be afraid to write some code to demonstrate your thought process!"
+      },
+      {
+        "question": "Implement a cache system with a maximum capacity, such that when the capacity is reached, the least recently used item is removed. The cache should support add and get operations.",
+        "answer": "bhoxnxw bdumbrella",
+        "feedback": "I'm having trouble understanding the answer provided. It seems like the candidate didn't provide a clear solution to the problem. \n\nWhat could be improved: The candidate should have provided a clear and concise explanation of how they would implement a cache system, including the data structures and algorithms used.\n\nWhat was good about the answer: Unfortunately, there isn't anything concrete to be taken away from this response. \n\nQuick tip for next time: When answering a technical question, try to break it down into smaller components and provide a clear, step-by-step explanation of how you would approach the problem. This will help demonstrate your thought process and problem-solving skills."
+      },
+      {
+        "question": "Implement a function to check if a given string is a valid IPv4 address. The function should return True if the string is a valid IPv4 address and False otherwise.",
+        "answer": "return",
+        "feedback": "Here's a possible answer the candidate gave:\n\n\"The function will return True if the string is a valid IPv4 address and False otherwise. It will first split the string into four parts by the '.' character. Then it will check each part to see if it is a number between 0 and 255, inclusive. If all four parts meet this condition, the function will return True, otherwise it will return False.\"\n\nFeedback:\nWhat was good about the answer: The candidate showed a clear understanding of the requirements and broke down the problem into manageable parts.\n\nWhat could be improved: The candidate didn't actually write the code to implement the solution, which is a crucial part of the interview. They also didn't explain how they would handle edge cases like empty strings or strings with leading zeros.\n\nQuick tip for next time: Make sure to write the code to implement the solution, even if you think it's obvious. Also, think about edge cases and how you would handle them. This will show that you've thought through the problem and can write robust code."
+      }
+    ]
+  },
+  "fd015c6f-cbd6-493a-846d-08f3910a98b8": {
+    "thread_id": "fd015c6f-cbd6-493a-846d-08f3910a98b8",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:01:47",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "dd2b05e6-860d-47ab-b47a-05bd18262cde": {
+    "thread_id": "dd2b05e6-860d-47ab-b47a-05bd18262cde",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:03:17",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "ef388ad4-76e7-4b4d-af9a-3fbf41f4ca44": {
+    "thread_id": "ef388ad4-76e7-4b4d-af9a-3fbf41f4ca44",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:14:40",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "3869c755-de56-4929-aa6e-50470232141b": {
+    "thread_id": "3869c755-de56-4929-aa6e-50470232141b",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:15:31",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "eb8d6968-4d6b-4cfd-b42d-8336a48da83b": {
+    "thread_id": "eb8d6968-4d6b-4cfd-b42d-8336a48da83b",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:19:11",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "71541f2e-2f85-4557-a4bd-834df7d74898": {
+    "thread_id": "71541f2e-2f85-4557-a4bd-834df7d74898",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:23:05",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "0b31ec47-bc66-4633-8a37-5dd7537b30b3": {
+    "thread_id": "0b31ec47-bc66-4633-8a37-5dd7537b30b3",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:25:48",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "cd79bef7-0b7d-45db-b278-44ca7b4dc9d6": {
+    "thread_id": "cd79bef7-0b7d-45db-b278-44ca7b4dc9d6",
+    "role": "AI Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T12:36:47",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "59009831-0d39-4584-ba7f-c7386c8b3738": {
+    "thread_id": "59009831-0d39-4584-ba7f-c7386c8b3738",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T16:20:24",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "d0ee9f8b-42c6-4b55-99f4-9ea973ecb096": {
+    "thread_id": "d0ee9f8b-42c6-4b55-99f4-9ea973ecb096",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-26T16:21:45",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "c86ed4f0-6b07-416d-98b7-06114bcb3409": {
+    "thread_id": "c86ed4f0-6b07-416d-98b7-06114bcb3409",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-26T16:54:17",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "403fbf8f-bf24-41a1-ae52-418d2d501dc3": {
+    "thread_id": "403fbf8f-bf24-41a1-ae52-418d2d501dc3",
+    "role": "AI / ML Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-27T12:30:12",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "f71fde97-3a8e-4c6f-9dd2-32167f69864c": {
+    "thread_id": "f71fde97-3a8e-4c6f-9dd2-32167f69864c",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-27T22:15:42",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "88b71743-561f-441f-a642-226c0b234da3": {
+    "thread_id": "88b71743-561f-441f-a642-226c0b234da3",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-27T22:18:10",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "ca741101-adc6-4e15-baf4-c1617125adc3": {
+    "thread_id": "ca741101-adc6-4e15-baf4-c1617125adc3",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T12:44:57",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Write a Python function that takes a list of integers as input, removes all occurrences of a specified integer, and returns the resulting list, then test this function with a sample list and a target integer.",
+        "answer": "def func(t_list:list,x:int):\nresult=[]\nfor i in range(len(t_list)):\nif t_list[i]!=x:\nresult.append(t_list)\nelse:\ni+=1\nreturn result\n\n",
+        "feedback": "Strengths: The candidate attempted to create a function that iterates over a list and checks for a target integer, which shows a basic understanding of Python fundamentals.\nAreas to improve: The function has a logical error, as it appends the entire list instead of the current element when the condition is met, and the else block is unnecessary and will cause a syntax error because it tries to increment the loop counter manually.\nTip: Use a list comprehension or append the current element (`t_list[i]`) to the result list instead of the entire list, and consider using a more Pythonic way to iterate over the list, such as a for-each loop.\nScore: 4/10"
+      }
+    ]
+  },
+  "3fa6774e-dd56-4eb1-ba8f-25a3e952cb61": {
+    "thread_id": "3fa6774e-dd56-4eb1-ba8f-25a3e952cb61",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:01:27",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "22ce4154-0cad-4048-8214-47f02993bd45": {
+    "thread_id": "22ce4154-0cad-4048-8214-47f02993bd45",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:03:10",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "03bb69c3-ae54-4f45-9042-c435d1d2bb49": {
+    "thread_id": "03bb69c3-ae54-4f45-9042-c435d1d2bb49",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:03:14",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "479ea100-cfab-4d0e-a92e-4239a2759283": {
+    "thread_id": "479ea100-cfab-4d0e-a92e-4239a2759283",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:04:36",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "177fc5f1-5482-404a-87fe-7ede36c50ddf": {
+    "thread_id": "177fc5f1-5482-404a-87fe-7ede36c50ddf",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:05:29",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "4b0f1abd-39d3-4b5b-baca-20af1e8e1457": {
+    "thread_id": "4b0f1abd-39d3-4b5b-baca-20af1e8e1457",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:34:49",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "65f22594-dba9-410a-983f-a9fc100483a9": {
+    "thread_id": "65f22594-dba9-410a-983f-a9fc100483a9",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:34:58",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "5fefbf24-39d1-464d-90e9-085da8299424": {
+    "thread_id": "5fefbf24-39d1-464d-90e9-085da8299424",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-28T13:35:50",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Write a Python function that takes a list of integers as input, removes any duplicate integers from the list, and returns the resulting list, while preserving the original order of the integers.",
+        "answer": "In the Python function we need two lists. Whereas one list is input list, whereas other list is a list we made. And we have to remove the duplicates of the list. So once an item occur in list, it check and then append to another list.",
+        "feedback": "Strengths: The candidate understands the problem and has a basic idea of how to approach it, recognizing the need to remove duplicates while preserving order.\nAreas to improve: The candidate's explanation lacks clarity and specificity, and they did not provide a concrete Python function to solve the problem. A more efficient approach, such as using a set to keep track of seen elements, was not mentioned.\nTip: Next time, provide a clear and concise code example to demonstrate your solution, and consider using built-in data structures like sets to improve efficiency.\nScore: 4/10"
+      }
+    ]
+  },
+  "e307dc70-fcc5-4b18-8a5f-036a5bc59a72": {
+    "thread_id": "e307dc70-fcc5-4b18-8a5f-036a5bc59a72",
+    "role": "Software Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-05-30T16:55:13",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Given a binary search tree, write a function to find the second largest node, assuming all node values are unique and the tree is not empty, and explain the approach used to solve this problem.",
+        "answer": "start",
+        "feedback": "Strengths: The candidate acknowledged the problem and is ready to start, showing willingness to tackle the challenge.\nAreas to improve: The candidate did not provide any code or explanation, lacking a clear approach to solving the problem, such as utilizing a reverse in-order traversal to find the second largest node.\nTip: Start by outlining the approach, including the data structures and algorithms that will be used, such as a binary search tree traversal.\nScore: 2/10"
+      }
+    ]
+  },
+  "fde717cb-c50c-4cf3-9d41-f0fff23f0794": {
+    "thread_id": "fde717cb-c50c-4cf3-9d41-f0fff23f0794",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-30T16:56:10",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "0250cb25-e7f3-4bd2-8466-82302fd92be6": {
+    "thread_id": "0250cb25-e7f3-4bd2-8466-82302fd92be6",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-05-30T17:03:06",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "570eaae0-1047-4c03-9858-3b0d00aa1396": {
+    "thread_id": "570eaae0-1047-4c03-9858-3b0d00aa1396",
+    "role": "python developer",
+    "difficulty": "beginner",
+    "max_question": 5,
+    "started_at": "2026-06-01T00:01:51",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "c028bf85-a11d-4924-af6e-ae139810e4e3": {
+    "thread_id": "c028bf85-a11d-4924-af6e-ae139810e4e3",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T00:07:05",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Design an algorithm to predict the probability of a customer churn for a telecom company, given a dataset containing customer demographic information, call logs, and billing history, and explain how you would implement and evaluate the model.",
+        "answer": "To design an algorithm we need to analyze the data of the customer.",
+        "feedback": "Strengths: The candidate recognizes the importance of analyzing customer data to design an algorithm, which is a crucial step in predicting customer churn.\nAreas to improve: The candidate's answer lacks specificity and detail, failing to provide a clear algorithmic approach or mention of machine learning techniques that could be used, such as logistic regression or random forests.\nTip: Next time, provide a more detailed explanation of the algorithm, including data preprocessing, feature engineering, and model selection.\nScore: 4/10"
+      }
+    ]
+  },
+  "3e3658ad-45f0-42df-9b25-34158a2e68c2": {
+    "thread_id": "3e3658ad-45f0-42df-9b25-34158a2e68c2",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-06-01T00:10:29",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "What is the difference between the 'is' and '==' operators in Python, and when would you use each?",
+        "answer": "is is an assignment operator whereas equals to equals to is and compare is an operator",
+        "feedback": "Strengths: The candidate attempted to distinguish between the two operators, showing some familiarity with the concepts.\nAreas to improve: The candidate incorrectly identified 'is' as an assignment operator and lacked clarity in explaining the difference between 'is' and '=='. 'is' is actually used for identity comparison, while '==' is used for equality comparison.\nTip: Review the official Python documentation to understand the correct usage of 'is' and '==' operators, and practice explaining the difference with examples.\nScore: 2/10"
+      }
+    ]
+  },
+  "c186ab8f-ff88-4a7d-9489-2ca87cb69da3": {
+    "thread_id": "c186ab8f-ff88-4a7d-9489-2ca87cb69da3",
+    "role": "AI / ML Engineer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-06-01T00:25:38",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "What is the primary difference between supervised and unsupervised machine learning algorithms?",
+        "answer": "The primary difference between supervised and unsupervised unseen learning algorithms are supervised learning relies on labeled data whereas unsupervised unseen learning relies on unlabeled data. Supervised learning has types called linear regression classification whereas unsupervised learning types are clustering.",
+        "feedback": "Strengths: The candidate was able to identify the primary difference between supervised and unsupervised machine learning algorithms, highlighting the use of labeled and unlabeled data. They also provided examples of types of supervised and unsupervised learning, such as linear regression and clustering.\n\nAreas to improve: The candidate's answer could be more concise and clear, and they incorrectly used the term \"unseen\" to describe unsupervised learning. Additionally, they could have provided more detailed explanations or examples to support their answer.\n\nTip: Focus on providing accurate and concise definitions, and avoid using incorrect terminology to ensure clarity in your responses.\n\nScore: 6/10"
+      }
+    ]
+  },
+  "85208328-1316-48b0-8a0e-bc99907437d6": {
+    "thread_id": "85208328-1316-48b0-8a0e-bc99907437d6",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T16:42:25",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Design a function to find the middle element of a singly linked list, and explain the trade-offs of your approach in terms of time and space complexity.",
+        "answer": "import pandas as pd\nfrom sklearn.metrics.pairwise import cosine_similarity\nimport numpy as np\n\n# Sample user-product rating dataset\ndata = {\n    'user_id': [1, 1, 1, 2, 2, 3, 3, 4],\n    'product_id': [101, 102, 103, 101, 104, 102, 103, 104],\n    'rating': [5, 3, 4, 4, 5, 2, 4, 3]\n}\n\n# Create DataFrame\ndf = pd.DataFrame(data)\n\n# Pivot to create user-product matrix\nuser_product_matrix = df.pivot(index='user_id', columns='product_id', values='rating').fillna(0)\n\n# Compute user similarity matrix using cosine similarity\nuser_similarity = cosine_similarity(user_product_matrix)\nuser_similarity_df = pd.DataFrame(user_similarity, index=user_product_matrix.index, columns=user_product_matrix.index)\n\n# Function to recommend products for a given user\ndef recommend_products(target_user, top_n=2):\n    # Weighted sum of ratings from similar users\n    similar_users = user_similarity_df[target_user].drop(target_user).sort_values(ascending=False)\n    recommendations = pd.Series(dtype=float)\n    \n    for user, similarity in similar_users.items():\n        weighted_ratings = user_product_matrix.loc[user] * similarity\n        recommendations = recommendations.add(weighted_ratings, fill_value=0)\n    \n    # Exclude products already rated by the target user\n    already_rated = user_product_matrix.loc[target_user]\n    recommendations = recommendations[already_rated == 0]\n    \n    # Return top N recommended products\n    return recommendations.sort_values(ascending=False).head(top_n)\n\n# Example usage\nprint(\"Recommended products for user 1:\")\nprint(recommend_products(1, top_n=3)",
+        "feedback": null
+      },
+      {
+        "question": "Design a function to find the middle element of a singly linked list, and explain the trade-offs of your approach in terms of time and space complexity.",
+        "answer": "for design a function first we need to find out the lenth of linked list and then we iterate over middle elemet and print that",
+        "feedback": "Strengths: The candidate attempted to break down the problem into manageable steps, recognizing the need to find the length of the linked list before locating the middle element.\nAreas to improve: The candidate's approach lacks clarity and detail, and they didn't provide a clear function design or consider alternative approaches, such as using two pointers to reduce time complexity.\nTip: Consider using the two-pointer technique, where one pointer moves twice as fast as the other, to find the middle element in a single pass, reducing time complexity to O(n).\nScore: 4/10"
+      }
+    ]
+  },
+  "05406245-9902-4769-986f-2cce1488068a": {
+    "thread_id": "05406245-9902-4769-986f-2cce1488068a",
+    "role": "AI / ML Engineer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T16:47:22",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "c38f4fd6-2d75-4619-9767-b8fc095e83f2": {
+    "thread_id": "c38f4fd6-2d75-4619-9767-b8fc095e83f2",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-06-01T16:48:26",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "What is the difference between the 'is' and '==' operators in Python, and how would you use them in a simple example?",
+        "answer": "Is it equals to operator? Are the comparisons of operator? Is operator checked the identity? Whether it belongs to the same object or as it comes to operator, check the comparison like both variables are same or not.",
+        "feedback": "Strengths: The candidate attempted to address the question and showed some understanding of the operators' purposes, mentioning that \"is\" checks identity.\nAreas to improve: The candidate's explanation was unclear and confusing, failing to provide a concise and accurate distinction between the 'is' and '==' operators, and lacking a simple example to demonstrate their usage.\nTip: For next time, focus on providing a clear and direct answer, such as \"'is' checks if two variables are the same object, while '==' checks if their values are equal\", and provide a simple code example to illustrate the difference.\nScore: 4/10"
+      }
+    ]
+  },
+  "ffa67608-50e1-4733-ac26-74daf892578a": {
+    "thread_id": "ffa67608-50e1-4733-ac26-74daf892578a",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T16:56:03",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "d9e5a16a-277c-467d-8992-332a87205ed7": {
+    "thread_id": "d9e5a16a-277c-467d-8992-332a87205ed7",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T16:59:23",
+    "completed": false,
+    "qa_pairs": []
+  },
+  "a73f02bc-ddaf-475f-9276-1e2e78d87fe7": {
+    "thread_id": "a73f02bc-ddaf-475f-9276-1e2e78d87fe7",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T17:03:05",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Write a Python function to find the first duplicate in an array of integers, where a duplicate is defined as an element that appears more than once in the array and the first duplicate is the one with the smallest index of its second occurrence.",
+        "answer": "def  find_duplicate(array):\nfor i in range(len(array)):\nfor j in range(len(array)):\nif arr[i]==arr[j]:\nprint(\"first duplicate)\nelse:\nprint(\"no duplicate found\")",
+        "feedback": "Strengths: The candidate attempted to solve the problem with a nested loop approach, showing some understanding of iteration in Python.\nAreas to improve: The candidate's function has several issues, including undefined variables (arr instead of array), incorrect logic for finding the first duplicate, and incomplete print statements. The function also lacks efficiency, with a time complexity of O(n^2).\nTip: Use a dictionary to store the elements we've seen so far and their indices to achieve a more efficient solution with a time complexity of O(n).\nScore: 2/10"
+      },
+      {
+        "question": "Write a Python function that takes a list of integers as input and returns the first duplicate, which is the first integer that appears more than once in the list, or None if no duplicates are found, while preserving the original order of elements.",
+        "answer": "For writing a python function first we need to take an input to array as input whereas we iterate over the array until the length of the array and then as we iterate over the items we can append to into another dictionary where we can check if the item exists or not. if exist print to found and if not exist it's no replicator form",
+        "feedback": "Strengths: The candidate demonstrated an understanding of the problem and attempted to provide a solution using a dictionary to track duplicate elements.\nAreas to improve: The candidate's explanation was unclear and lacked a concrete implementation in Python, and did not fully address the requirement of preserving the original order of elements.\nTip: Next time, provide a clear and concise Python code snippet to demonstrate the solution, such as using a dictionary to track seen elements and returning the first duplicate found.\nScore: 4/10"
+      }
+    ]
+  },
+  "d39514fb-34ce-4aff-a9b8-ac7b2e761b05": {
+    "thread_id": "d39514fb-34ce-4aff-a9b8-ac7b2e761b05",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-01T17:14:00",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Write a Python function that takes a list of integers as input and returns a new list containing only the elements from the original list that have an even index, preserving their original order, using list comprehension.",
+        "answer": "def even_list(items):\nlis=[]\n   for index,item in items :\n          if index%2==0:\n                 lis.append[item]\n    return lis",
+        "feedback": "Strengths: The candidate attempted to solve the problem by iterating over the list and checking the index of each element, which shows an understanding of the problem's requirements.\nAreas to improve: The candidate's implementation does not correctly use the enumerate function to get both the index and value, and also failed to implement the solution using list comprehension as requested. Additionally, there's a syntax error in the append statement.\nTip: Next time, use the enumerate function to get both the index and value, and implement the solution using list comprehension, such as `[item for index, item in enumerate(items) if index % 2 == 0]`.\nScore: 4/10"
+      }
+    ]
+  },
+  "4cc3c0b9-e50e-4d0a-b03b-6ffa629cac7a": {
+    "thread_id": "4cc3c0b9-e50e-4d0a-b03b-6ffa629cac7a",
+    "role": "Python Developer",
+    "difficulty": "Intermediate",
+    "max_question": 5,
+    "started_at": "2026-06-03T00:55:29",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "Write a Python function that implements a queue using two stacks, including methods for enqueue, dequeue, and is_empty, and explain the time and space complexity of your solution.",
+        "answer": "ncd ck ececc njdwbic bvjhbw",
+        "feedback": "Strengths: None, as the provided answer does not contain a valid Python function implementation.\nAreas to improve: The candidate did not provide a Python function that implements a queue using two stacks, and also did not explain the time and space complexity of the solution.\nTip: Start by defining two stacks and implement enqueue, dequeue, and is_empty methods using these stacks, considering the FIFO nature of a queue.\nScore: 0/10"
+      }
+    ]
+  },
+  "06f6239e-3fcc-47aa-8214-9ef69d09b50c": {
+    "thread_id": "06f6239e-3fcc-47aa-8214-9ef69d09b50c",
+    "role": "Python Developer",
+    "difficulty": "Beginner",
+    "max_question": 5,
+    "started_at": "2026-06-06T13:17:58",
+    "completed": false,
+    "qa_pairs": [
+      {
+        "question": "What is the difference between the 'is' and '==' operators in Python, and when would you use each?",
+        "answer": "Is and equals to operators are assignment operators which are used to compare two values. Equals to equals to operator is used for comparing is these two operators are same or not.",
+        "feedback": "Strengths: The candidate has shown some familiarity with basic concepts in Python, mentioning operators for comparison.\nAreas to improve: The candidate's understanding of the 'is' and '==' operators seems incorrect, as 'is' checks for identity (same object in memory) and '==' checks for equality (same value), and both are comparison operators, not assignment operators.\nTip: Review the documentation and practice examples to understand the difference between 'is' and '==' in Python, such as comparing lists or custom objects.\nScore: 2/10"
+      },
+      {
+        "question": "What is the purpose of the import statement in Python, and how does ithandle duplicate imports of the same module?",
+        "answer": "Python is very vast language. It has multiple millions of libraries, modules. So for importing, for fetching these libraries, we need to use keyword import and duplicate import.",
+        "feedback": "Strengths: The candidate acknowledged the vast number of libraries in Python and recognized the importance of importing them.\nAreas to improve: The candidate's explanation was incomplete and didn't directly address how the import statement handles duplicate imports, lacking clarity and specificity.\nTip: To improve, focus on providing concrete, concise answers that thoroughly address the question, such as explaining that Python only loads a module once, even if it's imported multiple times.\nScore: 4/10"
+      }
+    ]
+  }
+}

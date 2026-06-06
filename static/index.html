@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>InterviewPilot</title>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#00000b;
+  --s1:#0d0d14;
+  --s2:#12121c;
+  --border:#1f1f2e;
+  --border2:#2a2a3d;
+  --green:#00e5a0;
+  --green-dim:rgba(0,229,160,.12);
+  --green-glow:rgba(0,229,160,.22);
+  --purple:#8b5cf6;
+  --purple-dim:rgba(139,92,246,.12);
+  --red:#ff4d6d;
+  --red-dim:rgba(255,77,109,.1);
+  --text:#e8e8f0;
+  --muted:#52526a;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Space Grotesk',sans-serif;
+}
+html,body,#root{height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--text)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* shell */
+.shell{height:100vh;display:grid;grid-template-rows:48px 1fr;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--border);background:var(--s1);z-index:20}
+.logo{font-size:16px;font-weight:700;letter-spacing:-.5px;color:var(--green)}
+.logo span{color:var(--muted);font-weight:400}
+.top-right{display:flex;gap:8px;align-items:center}
+.chip{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:100px;border:1px solid var(--border2);color:var(--muted)}
+.chip.live{border-color:var(--red);color:var(--red);display:flex;align-items:center;gap:5px}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* 2-col */
+.main{display:grid;grid-template-columns:300px 1fr;overflow:hidden}
+
+/* cam */
+.cam-panel{border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--s1);overflow:hidden}
+.cam-viewport{flex:1;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cam-viewport video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:block}
+.cam-idle{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-family:var(--mono)}
+.cam-idle svg{width:40px;height:40px;opacity:.2;stroke:currentColor;fill:none;stroke-width:1.5}
+.cam-corners{position:absolute;inset:0;pointer-events:none}
+.corner{position:absolute;width:16px;height:16px;border-color:var(--green);border-style:solid;opacity:.6}
+.corner.tl{top:10px;left:10px;border-width:1.5px 0 0 1.5px}
+.corner.tr{top:10px;right:10px;border-width:1.5px 1.5px 0 0}
+.corner.bl{bottom:10px;left:10px;border-width:0 0 1.5px 1.5px}
+.corner.br{bottom:10px;right:10px;border-width:0 1.5px 1.5px 0}
+.cam-you{position:absolute;bottom:8px;left:10px;font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--green);opacity:.8}
+.cam-info{padding:12px 14px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:9px}
+.info-row{display:flex;justify-content:space-between;align-items:center}
+.info-key{font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.info-val{font-size:12px;font-weight:500}
+.prog-track{height:2px;background:var(--border2);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--purple));transition:width .6s ease}
+
+/* right */
+.right{display:flex;flex-direction:column;overflow:hidden}
+.nav{display:flex;border-bottom:1px solid var(--border);background:var(--s1);flex-shrink:0}
+.nav-btn{padding:0 20px;height:40px;background:none;border:none;font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.nav-btn.active{color:var(--green);border-bottom-color:var(--green)}
+
+/* setup */
+.setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;gap:28px}
+.setup-h{font-size:38px;font-weight:700;letter-spacing:-1.5px;line-height:1.1;text-align:center}
+.setup-h em{color:var(--green);font-style:normal}
+.setup-sub{color:var(--muted);font-size:13px;text-align:center;max-width:380px;line-height:1.6}
+.fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%;max-width:540px}
+.f-label{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+select{width:100%;background:var(--s2);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:12px;padding:8px 10px;outline:none;cursor:pointer;appearance:none;transition:border-color .2s}
+select:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-dim)}
+.btn-start{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:-.3px;padding:13px 44px;background:var(--green);color:#06060a;border:none;border-radius:100px;cursor:pointer;transition:transform .15s,box-shadow .2s;box-shadow:0 0 36px var(--green-glow)}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 0 52px var(--green-glow)}
+.btn-start:active{transform:translateY(0)}
+.btn-start:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* interview */
+.iv-view{flex:1;display:flex;flex-direction:column;overflow:hidden}
+
+/* question */
+.q-section{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sec-label{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.q-text{font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.2px;min-height:52px}
+.q-text.loading{font-size:13px;font-weight:400;color:var(--muted);display:flex;align-items:center;gap:8px}
+.replay-btn{margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:100px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all .2s}
+.replay-btn:hover{color:var(--green);border-color:var(--green)}
+.replay-btn.playing{color:var(--green);border-color:var(--green);animation:pulse-ring 1.5s ease-in-out infinite}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 var(--green-dim)}50%{box-shadow:0 0 0 5px transparent}}
+
+/* feedback */
+.fb-section{padding:12px 24px;border-bottom:1px solid var(--border);background:rgba(0,229,160,.03);flex-shrink:0;max-height:150px;overflow-y:auto}
+.fb-label{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.fb-text{font-size:12px;line-height:1.75;white-space:pre-line}
+.fb-replay{margin-top:7px;display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;padding:3px 10px;border-radius:100px;border:1px solid rgba(139,92,246,.3);background:none;color:var(--purple);cursor:pointer;transition:border-color .2s}
+.fb-replay:hover{border-color:var(--purple)}
+
+/* answer */
+.ans-section{flex:1;display:flex;flex-direction:column;padding:14px 24px 16px;gap:10px;overflow:hidden;min-height:0}
+.tabs{display:flex;gap:4px}
+.tab{font-family:var(--mono);font-size:10px;letter-spacing:.5px;padding:5px 14px;border-radius:100px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab.active{background:var(--green);color:#06060a;border-color:var(--green);font-weight:500}
+.tab:hover:not(.active){color:var(--text)}
+
+/* voice */
+.voice-tab{flex:1;display:flex;flex-direction:column;gap:10px;min-height:0}
+.rec-zone{flex:1;border:1.5px dashed var(--border2);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:all .25s;min-height:70px}
+.rec-zone.recording{border-style:solid;border-color:var(--red);background:var(--red-dim);animation:rec-pulse 2s ease-in-out infinite}
+.rec-zone.done{border-style:solid;border-color:var(--purple);background:var(--purple-dim)}
+@keyframes rec-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,77,109,.15)}50%{box-shadow:0 0 0 10px rgba(255,77,109,0)}}
+.rec-btn{width:50px;height:50px;border-radius:50%;border:none;background:var(--red);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s;box-shadow:0 0 22px rgba(255,77,109,.3);flex-shrink:0}
+.rec-btn:hover{transform:scale(1.08)}
+.rec-btn.pulsing{animation:btn-pulse 1s ease-in-out infinite}
+@keyframes btn-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.rec-hint{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wave{display:flex;align-items:center;gap:3px;height:20px}
+.wave span{width:2.5px;background:var(--red);border-radius:2px;animation:wav .8s ease-in-out infinite}
+.wave span:nth-child(2){animation-delay:.1s}
+.wave span:nth-child(3){animation-delay:.2s}
+.wave span:nth-child(4){animation-delay:.3s}
+.wave span:nth-child(5){animation-delay:.15s}
+@keyframes wav{0%,100%{height:3px}50%{height:16px}}
+.transcript{background:var(--s2);border:1px solid var(--purple);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.6;outline:none;min-height:50px;max-height:80px;overflow-y:auto}
+
+/* type */
+.type-tab{flex:1;display:flex;flex-direction:column;gap:10px;min-height:0}
+textarea{flex:1;background:var(--s2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.6;padding:12px 14px;outline:none;resize:none;min-height:80px;transition:border-color .2s}
+textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-dim)}
+textarea::placeholder{color:var(--muted)}
+
+/* action row */
+.actions{display:flex;gap:8px;flex-shrink:0}
+.btn-submit{flex:1;padding:11px;background:var(--green);color:#06060a;border:none;border-radius:9px;font-family:var(--sans);font-weight:700;font-size:13px;cursor:pointer;transition:opacity .15s,transform .15s}
+.btn-submit:hover{opacity:.88;transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.btn-sec{padding:11px 16px;background:var(--s2);color:var(--text);border:1px solid var(--border2);border-radius:9px;font-family:var(--mono);font-size:10px;cursor:pointer;transition:border-color .2s}
+.btn-sec:hover{border-color:var(--border2)}
+
+/* done */
+.done-view{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;gap:16px;text-align:center}
+.done-em{font-size:52px;line-height:1}
+.done-title{font-size:28px;font-weight:700;letter-spacing:-1px}
+.done-sub{color:var(--muted);font-size:13px;line-height:1.6;max-width:380px}
+.done-fb{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;text-align:left;font-size:12px;line-height:1.75;white-space:pre-line;max-width:500px;width:100%;max-height:180px;overflow-y:auto}
+
+/* history */
+.history-view{flex:1;overflow-y:auto;padding:20px 24px}
+.history-title{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:18px}
+.sess-card{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--s1)}
+.sess-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;transition:background .15s;user-select:none}
+.sess-hdr:hover{background:rgba(255,255,255,.02)}
+.sess-role{font-weight:600;font-size:13px;margin-bottom:3px}
+.sess-meta{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.sess-badge{font-family:var(--mono);font-size:9px;padding:3px 9px;border-radius:100px;border:1px solid var(--border2);color:var(--muted)}
+.sess-badge.done{color:var(--green);border-color:rgba(0,229,160,.3)}
+.sess-body{padding:0 16px 16px}
+.qa-item{border-top:1px solid var(--border);padding-top:12px;margin-top:12px}
+.qa-q{font-size:12px;font-weight:500;margin-bottom:8px}
+.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qa-box{background:var(--bg);border-radius:8px;padding:9px 11px;font-size:11px;line-height:1.6}
+.qa-lbl{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:4px}
+
+/* face detection overlay */
+.face-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;transform:scaleX(-1)}
+.face-alert{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(255,77,109,.85);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.8px;padding:4px 10px;border-radius:100px;white-space:nowrap;pointer-events:none;animation:fadeUp .25s ease}
+.face-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500}
+.face-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.face-dot.on{background:var(--green)}
+.face-dot.off{background:var(--red)}
+.face-dot.warn{background:#f59e0b}
+.face-model-loading{position:absolute;bottom:8px;right:10px;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.5px}
+
+/* utils */
+.spin{width:14px;height:14px;border:2px solid var(--border2);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fade{animation:fadeUp .35s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.toast{position:fixed;bottom:20px;right:20px;z-index:100;background:var(--s2);border:1px solid var(--border2);border-radius:10px;padding:10px 16px;font-size:12px;transform:translateY(16px);opacity:0;transition:all .3s;pointer-events:none;max-width:280px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{border-color:var(--red);color:var(--red)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<audio id="q-aud" style="display:none"></audio>
+<audio id="fb-aud" style="display:none"></audio>
+<div class="toast" id="toast"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+const API = 'http://localhost:8000';
+
+// ── Audio: returns a Promise that resolves ONLY when audio fully ends ─────────
+function playAudio(b64, audioId, btnRef) {
+  return new Promise((resolve) => {
+    if (!b64) { resolve(); return; }
+    const el = document.getElementById(audioId);
+    el.pause();
+    el.currentTime = 0;
+    el.src = 'data:audio/mp3;base64,' + b64;
+    if (btnRef?.current) btnRef.current.classList.add('playing');
+    const done = () => {
+      el.onended = null;
+      el.onerror = null;
+      if (btnRef?.current) btnRef.current.classList.remove('playing');
+      resolve();
+    };
+    el.onended = done;
+    el.onerror = done;
+    el.play().catch(done);
+  });
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+let _toastTimer;
+function toast(msg, err = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show' + (err ? ' err' : '');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.remove('show'), 4500);
+}
+
+// ── blobToB64 ─────────────────────────────────────────────────────────────────
+function blobToB64(blob) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(blob);
+  });
+}
+
+// ── Spinner ───────────────────────────────────────────────────────────────────
+const Spinner = () => <span className="spin"/>;
+
+// ── Wave ──────────────────────────────────────────────────────────────────────
+const Wave = () => <div className="wave">{[0,1,2,3,4].map(i=><span key={i}/>)}</div>;
+
+// ══════════════════════════════════════════════════════════════════════════════
+// Face Detection — model loading + per-frame detection
+// ══════════════════════════════════════════════════════════════════════════════
+const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model';
+let _modelsReady = false;
+let _modelsLoading = false;
+
+async function ensureModels() {
+  if (_modelsReady) return true;
+  if (_modelsLoading) return false;
+  _modelsLoading = true;
+  try {
+    await Promise.all([
+      faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+      faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+      faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
+    ]);
+    _modelsReady = true;
+  } catch(e) {
+    _modelsLoading = false;
+    console.error('face-api model load failed:', e);
+  }
+  return _modelsReady;
+}
+
+async function runDetection(videoEl) {
+  if (!videoEl || videoEl.readyState < 2) return null;
+  try {
+    const result = await faceapi
+      .detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize: 224 }))
+      .withFaceLandmarks()
+      .withFaceExpressions();
+    if (!result) return null;
+    const { box } = result.detection;
+    const topExpr = Object.entries(result.expressions).sort((a,b)=>b[1]-a[1])[0];
+    const leftEye  = result.landmarks.getLeftEye();
+    const rightEye = result.landmarks.getRightEye();
+    const eyeY     = (leftEye[0].y + rightEye[0].y) / 2;
+    const faceCenter = box.y + box.height / 2;
+    const eyeContact = Math.abs(eyeY - faceCenter) < box.height * 0.22;
+    return {
+      confidence: result.detection.score,
+      expression: topExpr[0],
+      eyeContact,
+      box,
+      landmarks: result.landmarks,
+    };
+  } catch { return null; }
+}
+
+function drawDetection(canvas, video, detection) {
+  if (!canvas || !video) return;
+  const W = video.videoWidth, H = video.videoHeight;
+  if (!W || !H) return;
+  canvas.width  = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+  if (!detection) return;
+  const { box, landmarks } = detection;
+  // bounding box
+  ctx.strokeStyle = '#00e5a0';
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(box.x, box.y, box.width, box.height);
+  // confidence label
+  ctx.fillStyle   = '#00e5a0';
+  ctx.font        = '10px JetBrains Mono, monospace';
+  ctx.fillText(Math.round(detection.confidence * 100) + '%', box.x + 4, box.y - 5);
+  // landmarks (68 points)
+  ctx.fillStyle = 'rgba(139,92,246,0.75)';
+  landmarks.positions.forEach(pt => {
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// CamPanel
+// ══════════════════════════════════════════════════════════════════════════════
+function CamPanel({ active, role, difficulty, qNum, maxQ }) {
+  const videoRef    = useRef(null);
+  const canvasRef   = useRef(null);
+  const streamRef   = useRef(null);
+  const rafRef      = useRef(null);
+  const lastDetect  = useRef(0);
+
+  const [modelsReady, setModelsReady] = useState(false);
+  const [faceData, setFaceData]       = useState(null);   // null = no face
+  const [alert, setAlert]             = useState('');
+
+  // Load models once on mount
+  useEffect(() => {
+    ensureModels().then(ok => setModelsReady(ok));
+  }, []);
+
+  // Camera on/off
+  useEffect(() => {
+    if (active && !streamRef.current) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then(stream => {
+          streamRef.current = stream;
+          if (videoRef.current) videoRef.current.srcObject = stream;
+        })
+        .catch(() => toast('Camera access denied — continuing without video.', true));
+    }
+    if (!active && streamRef.current) {
+      streamRef.current.getTracks().forEach(t => t.stop());
+      streamRef.current = null;
+      if (videoRef.current) videoRef.current.srcObject = null;
+      cancelAnimationFrame(rafRef.current);
+      setFaceData(null);
+      setAlert('');
+    }
+  }, [active]);
+
+  // Detection loop — runs only while camera is active + models ready
+  useEffect(() => {
+    if (!active || !modelsReady) return;
+    let alive = true;
+
+    const loop = async (ts) => {
+      if (!alive) return;
+      rafRef.current = requestAnimationFrame(loop);
+      if (ts - lastDetect.current < 600) return;   // ~1.6 fps — gentle on CPU
+      lastDetect.current = ts;
+
+      const det = await runDetection(videoRef.current);
+      if (!alive) return;
+
+      drawDetection(canvasRef.current, videoRef.current, det);
+      setFaceData(det);
+
+      if (!det) {
+        setAlert('No face detected');
+      } else if (!det.eyeContact) {
+        setAlert('Look at the camera');
+      } else {
+        setAlert('');
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(loop);
+    return () => { alive = false; cancelAnimationFrame(rafRef.current); };
+  }, [active, modelsReady]);
+
+  const pct = maxQ ? Math.round((qNum / maxQ) * 100) : 0;
+
+  // Derived display values
+  const faceOn   = !!faceData;
+  const expr     = faceData?.expression ?? '—';
+  const eyeOk    = faceData?.eyeContact;
+  const conf     = faceData ? Math.round(faceData.confidence * 100) + '%' : '—';
+
+  return (
+    <div className="cam-panel">
+      <div className="cam-viewport">
+        {!active ? (
+          <div className="cam-idle">
+            <svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.277A1 1 0 0121 8.68v6.64a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+            Camera starts with interview
+          </div>
+        ) : (
+          <>
+            <video ref={videoRef} autoPlay muted playsInline/>
+            <canvas ref={canvasRef} className="face-canvas"/>
+            {alert && <div className="face-alert">⚠ {alert}</div>}
+            {!modelsReady && <div className="face-model-loading">loading AI models…</div>}
+            <div className="cam-corners">
+              <div className="corner tl"/><div className="corner tr"/>
+              <div className="corner bl"/><div className="corner br"/>
+              <div className="cam-you">● YOU</div>
+            </div>
+          </>
+        )}
+      </div>
+      <div className="cam-info">
+        <div className="info-row"><span className="info-key">Role</span><span className="info-val">{role||'—'}</span></div>
+        <div className="info-row"><span className="info-key">Level</span><span className="info-val">{difficulty||'—'}</span></div>
+        <div className="info-row">
+          <span className="info-key">Face</span>
+          <span className="face-badge">
+            <span className={`face-dot ${!active ? 'off' : faceOn ? 'on' : 'off'}`}/>
+            {!active ? '—' : faceOn ? `${conf} · ${expr}` : 'not detected'}
+          </span>
+        </div>
+        <div className="info-row">
+          <span className="info-key">Eye contact</span>
+          <span className="face-badge">
+            <span className={`face-dot ${!active ? 'off' : !faceOn ? 'off' : eyeOk ? 'on' : 'warn'}`}/>
+            {!active ? '—' : !faceOn ? '—' : eyeOk ? 'good' : 'look at cam'}
+          </span>
+        </div>
+        <div className="info-row"><span className="info-key">Progress</span><span className="info-val">{qNum ? `${qNum} / ${maxQ}` : '—'}</span></div>
+        <div className="prog-track"><div className="prog-fill" style={{width:pct+'%'}}/></div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VoiceAnswer
+// ══════════════════════════════════════════════════════════════════════════════
+function VoiceAnswer({ onSubmit, submitting }) {
+  const [state, setState] = useState('idle'); // idle | recording | transcribing | done
+  const [transcript, setTranscript] = useState('');
+  const mrRef = useRef(null);
+  const chunksRef = useRef([]);
+  const editRef = useRef(null);
+
+  const startRec = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      chunksRef.current = [];
+      mrRef.current = new MediaRecorder(stream);
+      mrRef.current.ondataavailable = e => chunksRef.current.push(e.data);
+      mrRef.current.onstop = handleStop;
+      mrRef.current.start();
+      setState('recording');
+    } catch {
+      toast('Mic access denied — use the Type tab instead.', true);
+    }
+  };
+
+  const stopRec = () => {
+    if (!mrRef.current) return;
+    mrRef.current.stop();
+    mrRef.current.stream.getTracks().forEach(t => t.stop());
+    setState('transcribing');
+  };
+
+  const handleStop = async () => {
+    const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+    const b64 = await blobToB64(blob);
+    try {
+      const res = await fetch(`${API}/transcribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ audio_b64: b64 }),
+      });
+      const data = await res.json();
+      setTranscript(data.transcript || '');
+      setState('done');
+    } catch {
+      toast('Transcription failed — try again.', true);
+      setState('idle');
+    }
+  };
+
+  const reset = () => { setState('idle'); setTranscript(''); };
+  const toggle = () => state === 'recording' ? stopRec() : startRec();
+
+  const submit = () => {
+    const text = editRef.current?.textContent?.trim() || transcript.trim();
+    if (!text) { toast('No answer to submit.', true); return; }
+    onSubmit(text);
+  };
+
+  return (
+    <div className="voice-tab">
+      <div
+        className={`rec-zone ${state==='recording'?'recording':''} ${state==='done'?'done':''}`}
+        onClick={state === 'done' ? undefined : toggle}
+      >
+        <button
+          className={`rec-btn ${state==='recording'?'pulsing':''}`}
+          onClick={e => { e.stopPropagation(); if(state!=='done') toggle(); }}
+        >
+          {state==='transcribing' ? '⏳' : state==='recording' ? '⏹' : '🎤'}
+        </button>
+        {state==='recording' && <Wave/>}
+        <span className="rec-hint">
+          {state==='idle'         && 'Click to record your answer'}
+          {state==='recording'    && 'Recording… click to stop'}
+          {state==='transcribing' && 'Transcribing with Whisper…'}
+          {state==='done'         && '✓ Done — edit below if needed'}
+        </span>
+      </div>
+
+      {state === 'done' && (
+        <div
+          ref={editRef}
+          className="transcript fade"
+          contentEditable
+          suppressContentEditableWarning
+          onInput={e => setTranscript(e.currentTarget.textContent)}
+        >{transcript}</div>
+      )}
+
+      <div className="actions">
+        {state === 'done' && <button className="btn-sec" onClick={reset}>↺ Re-record</button>}
+        <button className="btn-submit" disabled={state !== 'done' || submitting} onClick={submit}>
+          {submitting ? 'Evaluating…' : 'Submit Answer →'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TypeAnswer
+// ══════════════════════════════════════════════════════════════════════════════
+function TypeAnswer({ onSubmit, submitting, resetKey }) {
+  const [val, setVal] = useState('');
+  useEffect(() => setVal(''), [resetKey]);
+  return (
+    <div className="type-tab">
+      <textarea
+        placeholder="Type your answer here…"
+        value={val}
+        onChange={e => setVal(e.target.value)}
+      />
+      <div className="actions">
+        <button className="btn-submit" disabled={!val.trim() || submitting} onClick={() => onSubmit(val.trim())}>
+          {submitting ? 'Evaluating…' : 'Submit Answer →'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// InterviewView  ←  audio sequencing lives here
+// ══════════════════════════════════════════════════════════════════════════════
+function InterviewView({ session, onDone }) {
+  const [phase, setPhase]       = useState('answer');  // answer | evaluating
+  const [question, setQuestion] = useState(session.question);
+  const [qNum, setQNum]         = useState(session.question_number);
+  const [qAudio, setQAudio]     = useState(session.question_audio);
+  const [feedback, setFeedback] = useState(null);
+  const [fbAudio, setFbAudio]   = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [tab, setTab]           = useState('voice');
+  const [resetKey, setResetKey] = useState(0);
+  const qBtnRef  = useRef(null);
+  const fbBtnRef = useRef(null);
+
+  // Play first question on mount (only once)
+  useEffect(() => {
+    if (session.question_audio) {
+      playAudio(session.question_audio, 'q-aud', qBtnRef);
+    }
+  }, []); // eslint-disable-line
+
+  const submitAnswer = async (answer) => {
+    if (!answer || submitting) return;
+    setSubmitting(true);
+    setPhase('evaluating');
+
+    try {
+      const res = await fetch(`${API}/answer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ thread_id: session.threadId, answer }),
+      });
+      const data = await res.json();
+
+      // Show feedback text immediately (audio hasn't started yet)
+      setFeedback(data.feedback);
+      setFbAudio(data.fb_audio);
+
+      // ── STEP 1: play feedback audio — await = blocks until fully done ──────
+      await playAudio(data.fb_audio, 'fb-aud', fbBtnRef);
+
+      // ── STEP 2: feedback is 100% finished here ─────────────────────────────
+      if (data.done) {
+        onDone(data.feedback, data.fb_audio);
+        return;
+      }
+
+      // ── STEP 3: update UI with next question ───────────────────────────────
+      setQuestion(data.question);
+      setQNum(data.question_number);
+      setQAudio(data.question_audio);
+      setPhase('answer');
+      setResetKey(k => k + 1);
+      setSubmitting(false);
+
+      // ── STEP 4: 400ms gap then play next question audio ────────────────────
+      await new Promise(r => setTimeout(r, 400));
+      await playAudio(data.question_audio, 'q-aud', qBtnRef);
+
+    } catch (e) {
+      toast('Server error — is the API running on port 8000?', true);
+      setPhase('answer');
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="iv-view">
+
+      {/* ── Question ── */}
+      <div className="q-section">
+        <div className="sec-label">Question {qNum} of {session.maxQ}</div>
+        {phase === 'evaluating'
+          ? <div className="q-text loading fade"><Spinner/> Evaluating your answer…</div>
+          : <div className="q-text fade">{question}</div>
+        }
+        {phase !== 'evaluating' && (
+          <button ref={qBtnRef} className="replay-btn" onClick={() => playAudio(qAudio, 'q-aud', qBtnRef)}>
+            ▶ Replay Question
+          </button>
+        )}
+      </div>
+
+      {/* ── Feedback from previous answer ── */}
+      {feedback && (
+        <div className="fb-section fade">
+          <div className="fb-label">✓ Feedback on last answer</div>
+          <div className="fb-text">{feedback}</div>
+          <button ref={fbBtnRef} className="fb-replay" onClick={() => playAudio(fbAudio, 'fb-aud', fbBtnRef)}>
+            ▶ Replay Feedback
+          </button>
+        </div>
+      )}
+
+      {/* ── Answer input ── */}
+      {phase === 'answer' && (
+        <div className="ans-section fade">
+          <div className="tabs">
+            <button className={`tab ${tab==='voice'?'active':''}`} onClick={() => setTab('voice')}>🎙 Voice</button>
+            <button className={`tab ${tab==='type'?'active':''}`}  onClick={() => setTab('type')}>⌨ Type</button>
+          </div>
+          {tab === 'voice'
+            ? <VoiceAnswer onSubmit={submitAnswer} submitting={submitting}/>
+            : <TypeAnswer  onSubmit={submitAnswer} submitting={submitting} resetKey={resetKey}/>
+          }
+        </div>
+      )}
+
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SetupView
+// ══════════════════════════════════════════════════════════════════════════════
+function SetupView({ onStart }) {
+  const [role, setRole]           = useState('AI / ML Engineer');
+  const [difficulty, setDifficulty] = useState('Intermediate');
+  const [count, setCount]         = useState('5');
+  const [loading, setLoading]     = useState(false);
+
+  const start = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API}/start`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role, difficulty, max_question: parseInt(count) }),
+      });
+      const data = await res.json();
+      onStart({
+        threadId:        data.thread_id,
+        question:        data.question,
+        question_number: data.question_number,
+        question_audio:  data.question_audio,
+        maxQ:            parseInt(count),
+        role,
+        difficulty,
+      });
+    } catch {
+      toast('Cannot connect to backend. Make sure uvicorn is running on port 8000.', true);
+      setLoading(false);
+    }
+  };
+
+  const roles = [
+    'AI / ML Engineer','Data Scientist','Data Analyst','Python Developer',
+    'Backend Developer','Frontend Developer','Full Stack Developer',
+    'DevOps Engineer','Cloud Engineer','NLP Engineer',
+    'Computer Vision Engineer','Cybersecurity Analyst','Software Engineer','ML Engineer','AI Research Engineer',
+    'RAG Engineer','AI Agent Developer','Deep Learning Engineer','Analytics Engineer','Business Intelligence Developer','Database Administrator','Network Engineer','DevSecOps Engineer','Engineering Manager'
+  ];
+
+  return (
+    <div className="setup">
+      <div>
+        <div className="setup-h">Your Practice<em>AI Interview</em><br/>Room</div>
+        <p className="setup-sub" style={{marginTop:10}}>
+          Configure your session. Camera activates on start, and every question is spoken aloud automatically.
+        </p>
+      </div>
+      <div className="fields">
+        <div><div className="f-label">Role</div>
+          <select value={role} onChange={e=>setRole(e.target.value)}>
+            {roles.map(r=><option key={r}>{r}</option>)}
+          </select>
+        </div>
+        <div><div className="f-label">Difficulty</div>
+          <select value={difficulty} onChange={e=>setDifficulty(e.target.value)}>
+            <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+          </select>
+        </div>
+        <div><div className="f-label">Questions</div>
+          <select value={count} onChange={e=>setCount(e.target.value)}>
+            <option value="5">5 questions</option>
+            <option value="10">10 questions</option>
+            <option value="15">15 questions</option>
+            <option value="20">20 questions</option>
+          </select>
+        </div>
+      </div>
+      <button className="btn-start" onClick={start} disabled={loading}>
+        {loading ? 'Starting…' : 'Start Interview →'}
+      </button>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DoneView
+// ══════════════════════════════════════════════════════════════════════════════
+function DoneView({ feedback, onRestart }) {
+  return (
+    <div className="done-view fade">
+      <div className="done-em">🎉</div>
+      <div className="done-title">Interview Complete!</div>
+      <p className="done-sub">All questions answered. Check History for your full session, or start a new one.</p>
+      {feedback && <div className="done-fb">{feedback}</div>}
+      <button className="btn-start" onClick={onRestart}>New Interview →</button>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// HistoryView
+// ══════════════════════════════════════════════════════════════════════════════
+function HistoryView() {
+  const [sessions, setSessions] = useState(null);
+  const [open, setOpen]         = useState({});
+
+  useEffect(() => {
+    fetch(`${API}/history`)
+      .then(r => r.json())
+      .then(setSessions)
+      .catch(() => setSessions([]));
+  }, []);
+
+  if (!sessions) return <div className="history-view" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><Spinner/></div>;
+
+  return (
+    <div className="history-view">
+      <div className="history-title">Session History</div>
+      {sessions.length === 0 && <p style={{color:'var(--muted)',fontSize:13}}>No sessions yet.</p>}
+      {sessions.map((s, i) => (
+        <div className="sess-card" key={i}>
+          <div className="sess-hdr" onClick={() => setOpen(o=>({...o,[i]:!o[i]}))}>
+            <div>
+              <div className="sess-role">{s.role} <span style={{color:'var(--muted)',fontWeight:400}}>· {s.difficulty}</span></div>
+              <div className="sess-meta">{(s.started_at||'').slice(0,16).replace('T',' ')} · {s.qa_pairs?.length||0}/{s.max_question} answered</div>
+            </div>
+            <span className={`sess-badge ${s.completed?'done':''}`}>{s.completed ? '✓ Done' : '⟳ In Progress'}</span>
+          </div>
+          {open[i] && (
+            <div className="sess-body fade">
+              {(s.qa_pairs||[]).length === 0
+                ? <p style={{color:'var(--muted)',fontSize:12,marginTop:4}}>No Q&A recorded yet.</p>
+                : (s.qa_pairs||[]).map((qa,j) => (
+                    <div className="qa-item" key={j}>
+                      <div className="qa-q">Q{j+1}: {qa.question}</div>
+                      <div className="qa-grid">
+                        <div className="qa-box"><div className="qa-lbl">Your Answer</div>{qa.answer||'—'}</div>
+                        <div className="qa-box"><div className="qa-lbl">Feedback</div>{qa.feedback||'—'}</div>
+                      </div>
+                    </div>
+                  ))
+              }
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// App  (root)
+// ══════════════════════════════════════════════════════════════════════════════
+function App() {
+  const [screen, setScreen]   = useState('setup');      // setup | interview | done
+  const [panel, setPanel]     = useState('interview');  // interview | history
+  const [session, setSession] = useState(null);
+  const [doneFb, setDoneFb]   = useState('');
+
+  const handleStart = (data) => { setSession(data); setScreen('interview'); };
+  const handleDone  = (fb)   => { setDoneFb(fb);   setScreen('done'); };
+  const handleRestart = ()   => { setSession(null); setScreen('setup'); setPanel('interview'); };
+
+  const camActive = screen === 'interview';
+
+  return (
+    <div className="shell">
+      <div className="topbar">
+        <div className="logo">Interview<span>Pilot</span></div>
+        <div className="top-right">
+          {session && screen === 'interview' && (
+            <div className="chip">Q {session.question_number} / {session.maxQ}</div>
+          )}
+          {camActive
+            ? <div className="chip live"><div className="live-dot"/>LIVE</div>
+            : <div className="chip">READY</div>
+          }
+        </div>
+      </div>
+
+      <div className="main">
+        <CamPanel
+          active={camActive}
+          role={session?.role||''}
+          difficulty={session?.difficulty||''}
+          qNum={session?.question_number||0}
+          maxQ={session?.maxQ||5}
+        />
+
+        <div className="right">
+          <div className="nav">
+            <button className={`nav-btn ${panel==='interview'?'active':''}`} onClick={() => setPanel('interview')}>Interview</button>
+            <button className={`nav-btn ${panel==='history'?'active':''}`}   onClick={() => setPanel('history')}>History</button>
+          </div>
+
+          {panel === 'history' ? <HistoryView/> : (
+            <>
+              {screen === 'setup'     && <SetupView onStart={handleStart}/>}
+              {screen === 'interview' && session && <InterviewView session={session} onDone={handleDone}/>}
+              {screen === 'done'      && <DoneView feedback={doneFb} onRestart={handleRestart}/>}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
