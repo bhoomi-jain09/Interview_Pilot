@@ -9,6 +9,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langgraph.errors import GraphInterrupt
 from langgraph.types import Command
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 
 # ── Import everything from your existing backend ──────────────────────────────
 
@@ -201,3 +204,10 @@ def get_session(thread_id: str):
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
     return session
+
+# Serve frontend
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse("static/index.html")
